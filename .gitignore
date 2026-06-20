@@ -54,3 +54,5 @@ Corridor/Library/metadata/
 Project/Library/EditorInstance.json
 *.stamp
 src/RaidHealerSimulatorUnity/UserSettings
+src/RaidHealerSimulatorUnity/Logs
+*.slnx
