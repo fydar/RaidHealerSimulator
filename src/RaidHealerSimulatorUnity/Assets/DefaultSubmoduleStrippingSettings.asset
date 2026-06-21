@@ -67,7 +67,6 @@ MonoBehaviour:
   - Tilemap
   - UI Toolkit
   - Unity 2D Core
-  - Unity Collections - NativeArray
   - Unity In-App Purchasing
   - WebGL Support
   - Compute Shader Support
