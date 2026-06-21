@@ -36,34 +36,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (scrollRight)
+        var members = character.Party.Members;
+        if (scrollRight && members.Count > 0)
         {
-            int currentIndex = character.Party.Members.IndexOf(character.SelectedTarget);
-            if (currentIndex != -1)
-            {
-                currentIndex++;
-
-                if (currentIndex >= character.Party.Members.Count)
-                {
-                    currentIndex = 0;
-                }
-                character.SelectedTarget = character.Party.Members[currentIndex];
-            }
+            int currentIndex = members.IndexOf(character.SelectedTarget);
+            character.SelectedTarget = currentIndex == -1
+                ? members[0]
+                : members[(currentIndex + 1) % members.Count];
         }
 
-        if (scrollLeft)
+        if (scrollLeft && members.Count > 0)
         {
-            int currentIndex = character.Party.Members.IndexOf(character.SelectedTarget);
-            if (currentIndex != -1)
-            {
-                currentIndex--;
-
-                if (currentIndex < 0)
-                {
-                    currentIndex = character.Party.Members.Count - 1;
-                }
-                character.SelectedTarget = character.Party.Members[currentIndex];
-            }
+            int currentIndex = members.IndexOf(character.SelectedTarget);
+            character.SelectedTarget = currentIndex == -1
+                ? members[members.Count - 1]
+                : members[(currentIndex - 1 + members.Count) % members.Count];
         }
         Character.PlayerSelected = character.SelectedTarget;
     }
