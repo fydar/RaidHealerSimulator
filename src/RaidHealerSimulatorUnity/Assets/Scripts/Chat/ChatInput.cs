@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ChatInput : MonoBehaviour
@@ -21,17 +22,18 @@ public class ChatInput : MonoBehaviour
 
     private void Update()
     {
-        bool send = Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter);
+        var keyboard = Keyboard.current;
+        bool send = keyboard.enterKey.isPressed || keyboard.numpadEnterKey.isPressed;
         if (allowEnter && Field.text.Length > 0 && send)
         {
             Send();
             lookback = -1;
             allowEnter = false;
         }
-        else if (send || (!Field.isFocused && Input.GetKey(KeyCode.T)))
+        else if (send || (!Field.isFocused && keyboard.tKey.isPressed))
         {
             Field.Select();
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            if (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed)
             {
                 Field.text = "/";
                 Field.selectionAnchorPosition = 1;
@@ -45,7 +47,7 @@ public class ChatInput : MonoBehaviour
 
         if (Field.isFocused)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (keyboard.upArrowKey.wasPressedThisFrame)
             {
                 if (lookback + 1 < lastInputs.Count)
                 {
@@ -55,7 +57,7 @@ public class ChatInput : MonoBehaviour
                     Field.selectionFocusPosition = Field.text.Length;
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (keyboard.downArrowKey.wasPressedThisFrame)
             {
                 if (lookback - 1 >= 0)
                 {
@@ -70,7 +72,7 @@ public class ChatInput : MonoBehaviour
                     Field.text = "";
                 }
             }
-            else if (Input.anyKeyDown)
+            else if (keyboard.anyKey.wasPressedThisFrame)
             {
                 lookback = -1;
             }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class HotbarSlot : MonoBehaviour
@@ -14,7 +15,7 @@ public class HotbarSlot : MonoBehaviour
     public float MainColourFade = 1.0f;
 
     private Ability ability;
-    private KeyCode binding;
+    private Key binding;
 
     private void Update()
     {
@@ -31,21 +32,21 @@ public class HotbarSlot : MonoBehaviour
 
         if (ChatInput.Instance != null && !ChatInput.Instance.Field.isFocused)
         {
-            if (binding != KeyCode.None && Input.GetKeyDown(binding))
+            if (binding != Key.None && Keyboard.current[binding].wasPressedThisFrame)
             {
                 UiClick();
             }
         }
     }
 
-    public void Setup(Ability ability, KeyCode binding)
+    public void Setup(Ability ability, Key binding)
     {
         this.ability = ability;
         this.binding = binding;
 
         Faded.sprite = ability.Icon;
         Main.sprite = ability.Icon;
-        SlotId.text = binding.ToString().Replace("Alpha", "");
+        SlotId.text = binding.ToString().Replace("Digit", "");
     }
 
     public void UiClick()

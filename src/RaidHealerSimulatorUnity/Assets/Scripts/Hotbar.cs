@@ -1,21 +1,22 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Hotbar : MonoBehaviour
 {
-    private static readonly Dictionary<int, KeyCode> mappings = new()
+    private static readonly Dictionary<int, Key> mappings = new()
     {
-        [0] = KeyCode.Alpha1,
-        [1] = KeyCode.Alpha2,
-        [2] = KeyCode.Alpha3,
-        [3] = KeyCode.Alpha4,
-        [4] = KeyCode.Alpha5,
-        [5] = KeyCode.Alpha6,
-        [6] = KeyCode.Alpha7,
-        [7] = KeyCode.Alpha8,
-        [8] = KeyCode.Alpha9,
-        [9] = KeyCode.Minus,
-        [10] = KeyCode.Equals,
+        [0] = Key.Digit1,
+        [1] = Key.Digit2,
+        [2] = Key.Digit3,
+        [3] = Key.Digit4,
+        [4] = Key.Digit5,
+        [5] = Key.Digit6,
+        [6] = Key.Digit7,
+        [7] = Key.Digit8,
+        [8] = Key.Digit9,
+        [9] = Key.Minus,
+        [10] = Key.Equals,
     };
 
     [SerializeField] private Character character;
@@ -34,7 +35,7 @@ public class Hotbar : MonoBehaviour
 
             if (!mappings.TryGetValue(index, out var mapping))
             {
-                mapping = KeyCode.None;
+                mapping = Key.None;
             }
 
             slotRenderer.Setup((Ability)ability, mapping);

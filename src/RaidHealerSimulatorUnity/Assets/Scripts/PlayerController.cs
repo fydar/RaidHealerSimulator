@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Character))]
 public class PlayerController : MonoBehaviour
@@ -22,9 +23,10 @@ public class PlayerController : MonoBehaviour
 
         bool scrollRight = false;
         bool scrollLeft = false;
-        if (Input.GetKeyDown(KeyCode.Tab))
+        var keyboard = Keyboard.current;
+        if (keyboard.tabKey.wasPressedThisFrame)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (keyboard.leftShiftKey.isPressed)
             {
                 scrollLeft = true;
             }

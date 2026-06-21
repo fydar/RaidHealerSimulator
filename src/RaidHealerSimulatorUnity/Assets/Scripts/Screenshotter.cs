@@ -1,7 +1,8 @@
-﻿#if UNITY_EDITOR || UNITY_STANDALONE
+#if UNITY_EDITOR || UNITY_STANDALONE
 using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,9 +19,9 @@ public class Screenshotter : MonoBehaviour
         }
     }
 
-    private static KeyCode CaptureKey => KeyCode.G;
+    private static Key CaptureKey => Key.G;
 
-    private static KeyCode OpenFolderKey => KeyCode.H;
+    private static Key OpenFolderKey => Key.H;
 
     public static void CaptureScreenshot()
     {
@@ -52,7 +53,7 @@ public class Screenshotter : MonoBehaviour
     [RuntimeInitializeOnLoadMethod]
     private static void Init()
     {
-        if (CaptureKey == KeyCode.None)
+        if (CaptureKey == Key.None)
         {
             return;
         }
@@ -67,11 +68,12 @@ public class Screenshotter : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(CaptureKey))
+        var keyboard = Keyboard.current;
+        if (keyboard[CaptureKey].wasPressedThisFrame)
         {
             CaptureScreenshot();
         }
-        if (Input.GetKeyDown(OpenFolderKey))
+        if (keyboard[OpenFolderKey].wasPressedThisFrame)
         {
             OpenScreenshotsFolder();
         }
@@ -96,11 +98,11 @@ public class Screenshotter : MonoBehaviour
                     return;
                 }
 
-                if (currentEvent.keyCode == OpenFolderKey)
+                if (currentEvent.keyCode == KeyCode.H)
                 {
                     OpenScreenshotsFolder();
                 }
-                else if (currentEvent.keyCode == CaptureKey)
+                else if (currentEvent.keyCode == KeyCode.G)
                 {
                     var camera = EditorUtility.CreateGameObjectWithHideFlags("Temp_Cam", HideFlags.HideAndDontSave)
                         .AddComponent<Camera>();
