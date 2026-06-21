@@ -12,11 +12,6 @@ public class Game : MonoBehaviour
     public CanvasGroup FadeToBlack;
     public Character PlayerCharacter;
 
-    [Header("Name Input")]
-    public CanvasGroup EnterNameDialogue;
-    public Button EnterNameButton;
-    public InputField EnterNameField;
-
     [Space]
     public GameObject EnterNameChannelParty;
     public GameObject EnterNameChannelGlobal;
@@ -26,10 +21,6 @@ public class Game : MonoBehaviour
     public string Username = null;
     public float RepeatStartTime = 0.0f;
     public float RepeatWait = 16.0f;
-
-    [Header("Invite Dialogue")]
-    public CanvasGroup InputDialogue;
-    public bool AcceptedInvite;
 
     [Header("Game World")]
     public PartyGenerator PlayerParty;
@@ -55,7 +46,6 @@ public class Game : MonoBehaviour
         IsGameLost = false;
         ChatFader.gameObject.SetActive(false);
         GameOverDialogue.gameObject.SetActive(false);
-        InputDialogue.gameObject.SetActive(false);
 
         EnterNameChannelParty.SetActive(true);
         EnterNameChannelGlobal.SetActive(false);
@@ -71,7 +61,7 @@ public class Game : MonoBehaviour
         Chat.Instance.Log($"<color=#ADB437>You have been added to a party.</color>");
         Chat.Instance.Log($"<color=#ADB437>Loot distribution has been set to round-robin.</color>");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.0f);
 
         var partyLeader = PlayerParty.Members
             .Where(c => c.TryGetComponent<AiController>(out _))
@@ -200,29 +190,8 @@ public class Game : MonoBehaviour
         SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 
-    public void UiEnterName()
-    {
-        if (!IsValidName(EnterNameField.text))
-        {
-            return;
-        }
-        Username = EnterNameField.text.Trim().Replace(" ", "_");
-    }
-
-    public void UiAcceptedInvite()
-    {
-        AcceptedInvite = true;
-    }
-
     public void UiRestartGame()
     {
         Restart = true;
-    }
-
-    private bool IsValidName(string name)
-    {
-        return !string.IsNullOrWhiteSpace(name)
-            && name.Length < 32
-            && name.Length > 3;
     }
 }
