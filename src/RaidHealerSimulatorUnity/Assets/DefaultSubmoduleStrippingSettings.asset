@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3efdd41947995b14ea6378b017ee4784, type: 3}
+  m_Name: DefaultSubmoduleStrippingSettings
+  m_EditorClassIdentifier: Unity.Web.Stripping.Editor::Unity.Web.Stripping.Editor.SubmoduleStrippingSettings
+  OptimizeCodeAfterStripping: 1
+  RemoveEmbeddedDebugSymbols: 1
+  MissingSubmoduleErrorHandling: 0
+  SubmodulesToStrip:
+  - 2D Rendering Common
+  - 2D Rendering Sprite Tiling
+  - Advanced Text Generator Support
+  - AndroidJNIModule
+  - Animation Allocators
+  - Animation Constraints
+  - Animation Core
+  - Animation Director
+  - Animation Human
+  - Animation Script Bindings
+  - Animation State Machine
+  - double-conversion
+  - Expression Evaluator
+  - Freetype2 Base
+  - Freetype2 CFF
+  - Freetype2 OpenType Validation
+  - Freetype2 Postscript
+  - GPU Instancing
+  - HierarchyCore Script Bindings
+  - IMGUI Script Bindings
+  - libjpeg
+  - libpng
+  - Mesh Blend Shapes
+  - Mesh Compression
+  - Mesh Script Bindings
+  - Mesh Skinning
+  - Mono Globalization
+  - Mono Runtime
+  - Newtonsoft Json.NET
+  - ParticleSystem
+  - Physics2D Script Bindings
+  - PhysX
+  - System.Data
+  - System.DateTimeOffset
+  - System.DateTimeParse
+  - System.Dynamic
+  - System.Numerics.Vector<T>
+  - System.Security
+  - System.TimeZoneInfo
+  - System.Xml
+  - TetGen
+  - Text Editing Utilities
+  - Text Selecting Utilities
+  - TextCore
+  - Texture Decompression BC
+  - Texture Decompression DXT
+  - Texture Decompression ETC
+  - Texture Decompression Crunch
+  - Tilemap
+  - UI Toolkit
+  - Unity 2D Core
+  - Unity Collections - NativeArray
+  - Unity In-App Purchasing
+  - WebGL Support
+  - Compute Shader Support
+  - zlib
